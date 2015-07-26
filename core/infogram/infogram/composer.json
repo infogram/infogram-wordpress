@@ -1,0 +1,27 @@
+{
+    "name": "infogram/infogram",
+    "description": "PHP client for infogr.am REST API",
+    "keywords": ["infogram", "infogr.am"],
+    "homepage": "https://github.com/infogram/infogram-php",
+    "licence": "MIT",
+    "authors": [
+        {
+            "name": "Mārtiņš Barinskis",
+            "email": "mb@infogr.am",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Infogram\\": "src/Infogram"
+        }
+    }
+}

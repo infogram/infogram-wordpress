@@ -8,29 +8,29 @@
 
 /* -- button */
 #call_infogr_popup {
-    background: url(../img/fav.jpg) no-repeat 7px center #f7f7f7;
-    border-color: #ccc;
-    box-shadow: 0 1px 0 #fff inset, 0 1px 0 rgba(0, 0, 0, 0.08);
-    color: #555;
+	background: url(../img/fav.jpg) no-repeat 7px center #f7f7f7;
+	border-color: #ccc;
+	box-shadow: 0 1px 0 #fff inset, 0 1px 0 rgba(0, 0, 0, 0.08);
+	color: #555;
 	border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 13px;
-    height: 28px;
-    line-height: 26px;
-    margin: 0;
-    padding: 0 10px 1px 27px;
-    text-decoration: none;
-    white-space: nowrap;
+	border-style: solid;
+	border-width: 1px;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+	height: 28px;
+	line-height: 26px;
+	margin: 0;
+	padding: 0 10px 1px 27px;
+	text-decoration: none;
+	white-space: nowrap;
 }
 
 #call_infogr_popup:hover {
 	background-color: #fafafa;
-    border-color: #999;
-    color: #222;
+	border-color: #999;
+	color: #222;
 }
 
 /* -- popup basic styles */
@@ -91,7 +91,7 @@
 .infogr-popup-footer:after {
 	content: '';
 	display: block;
-	clear: both;	
+	clear: both;  
 }
 
 .infogr-popup-footer .infogr_faq {
@@ -115,16 +115,16 @@
 }
 
 #infogr_embed input[type="text"]::-webkit-input-placeholder  { color: #b1b1b1; }
-#infogr_embed input[type="text"]::-moz-placeholder          	    { color: #b1b1b1; }
-#infogr_embed input[type="text"]:-moz-placeholder           	    { color: #b1b1b1; }
-#infogr_embed input[type="text"]:-ms-input-placeholder            { color: #b1b1b1; }
+#infogr_embed input[type="text"]::-moz-placeholder           { color: #b1b1b1; }
+#infogr_embed input[type="text"]:-moz-placeholder            { color: #b1b1b1; }
+#infogr_embed input[type="text"]:-ms-input-placeholder       { color: #b1b1b1; }
 
 #infogr_embed input[type="text"] {
 	width: 100%;
 	float: left;
 	color: #434343;
 	border-radius: 5px;
-    padding: 10px 20px;
+	padding: 10px 20px;
 	font-size: 15px;
 	font-family: "Roboto",sans-serif;
 	font-weight: 500;
@@ -203,7 +203,7 @@
 .container_infographic {
 	max-height: 500px;
 	padding: 90px 1% 0;
-    width: 98%;
+		width: 98%;
 }
 
 .infographic {
@@ -265,7 +265,6 @@
 .infographic:hover .infogr-hover {
 	opacity: 1;
 }
-
 
 
 /* -- message popup */

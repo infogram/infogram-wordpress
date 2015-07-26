@@ -1,12 +1,10 @@
 <?php
 /*
-Plugin Name: Infogram
-Plugin URI: https://infogr.am
-Description: It allows you to insert graphics from the site www.infogr.am
-Version: 1.0
-Author: WDS
-Author URI: http://www.webdesignsun.com
-Tags: infogram, shortcode, iframe, insert, rest api, json 
+	Plugin Name: Infogram
+	Plugin URI: https://infogr.am
+	Description: It allows you to insert graphics from the site www.infogr.am
+	Version: 1.0
+	Tags: infogram, shortcode, iframe, insert, rest api, json 
 */
 
 // Add setings page and register settings
@@ -59,16 +57,16 @@ function infogr_create_object() {
 	// Load Api config file
 	require_once('core/autoload.php');
 	// Load main Infogram class
-	require_once( 'class/class-infogram.php' );
+	require_once('class/class-infogram.php');
 	// Load media button function
-	require_once( 'button/add_button.php' );
+	require_once('button/add_button.php');
 	
 	global $inforgam;
 	
 	$options = array(
-				'api_key'	 => get_option('infogr_api_key'),
+				'api_key' => get_option('infogr_api_key'),
 				'api_secret' => get_option('infogr_api_secret'),
-				'username'	 => get_option('infogr_username')
+				'username' => get_option('infogr_username')
 			);
 
 	if ( !$inforgam ) {

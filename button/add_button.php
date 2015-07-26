@@ -1,21 +1,21 @@
 <?php
 /* Adds a custom media button on the post editor. */
-add_action( 'media_buttons', 'infogr_media_button', 11 );
+add_action('media_buttons', 'infogr_media_button', 11);
 
 /* Loads media button popup content in the footer. */
-add_action( 'admin_print_footer_scripts', 'infogr_media_popup_content', 100 );
+add_action('admin_print_footer_scripts', 'infogr_media_popup_content', 100);
 
 function infogr_media_button( $editor_id ) {
 	global $inforgam;
 	
-	wp_enqueue_script('infogr-popup-config',plugins_url('js/popup.js', __FILE__),array(), '20152306', true );
-	wp_enqueue_style( 'infogr-popup-style', plugins_url('css/button.css', __FILE__));
+	wp_enqueue_script('infogr-popup-config', plugins_url('js/popup.js', __FILE__), array(), '20152306', true);
+	wp_enqueue_style('infogr-popup-style', plugins_url('css/button.css', __FILE__));
 
 	if($inforgam->is_valid()) {
-		wp_enqueue_script('infogr-scroll-js',plugins_url('js/jquery.nicescroll.min.js', __FILE__),array(), '20152306', true );
+		wp_enqueue_script('infogr-scroll-js', plugins_url('js/jquery.nicescroll.min.js', __FILE__), array(), '20152306', true);
 	}
 	
-	printf( '<span id="%s">%s</span>',
+	printf('<span id="%s">%s</span>',
 		'call_infogr_popup',
 		'Add From Infogram'
 	);
@@ -73,7 +73,7 @@ function infogr_add_media_popup() {
 	foreach ($infographics as $infographic) {
 		$count--;
 		$clear = ($count == 0) ? ' clear' : '';
-		if($count == 0)	$count = 5;
+		if($count == 0) $count = 5;
 		
 		$embed = str_replace("https://infogr.am/", "", $infographic->url);
 
@@ -82,8 +82,7 @@ function infogr_add_media_popup() {
 		
 		$code = substr($infographic->embed_responsive, $start_pos,$end_pos-$start_pos);
 		
-		$settings = ($infographic->published !== true) ? array(' disabled'.$clear) 
-													   : array($clear,$embed,$code);
+		$settings = ($infographic->published !== true) ? array(' disabled'.$clear) : array($clear,$embed,$code);
 
 		$out .= '<div class="infographic'.$settings[0].'" data-embed="'.$settings[1].'" data-code="'.$settings[2].'">
 					<img src="'.$infographic->thumbnail_url.'">
@@ -137,4 +136,5 @@ function infogr_add_infographics( $atts ) {
 		return 'This code is broken or not exists!';
 	}
 }
-add_shortcode( 'infogram', 'infogr_add_infographics' );
+
+add_shortcode('infogram', 'infogr_add_infographics');

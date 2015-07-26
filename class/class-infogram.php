@@ -5,17 +5,20 @@ use Infogram\RequestSigningSession;
 
 class Infogram
 {
-    // Api key
-    private $api_key;
+	// Api key
+	private $api_key;
+
 	// API secret
 	private $api_secret;
+
 	// Username
 	private $username;
+
 	// Valid user settings
 	private $valid = false;
 		
 	function __construct($init) {
-		$this->api_key 	  = $init['api_key']; 
+		$this->api_key    = $init['api_key']; 
 		$this->api_secret = $init['api_secret'];
 		$this->username   = $init['username'];
 		if($this->check_settings() === true)

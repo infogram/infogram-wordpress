@@ -3,7 +3,7 @@
 	Plugin Name: Infogram
 	Plugin URI: https://infogr.am
 	Description: It allows you to insert graphics from the site www.infogr.am
-	Version: 1.0
+	Version: 1.1
 	Tags: infogram, shortcode, iframe, insert, rest api, json 
 */
 
@@ -11,8 +11,8 @@
 add_action('admin_menu', 'infogr_add_pages');
 
 function infogr_add_pages() {
-    //create new top-level menu
-	add_options_page('Infogram v1.0', 'Infogram settings', 'level_0', 'infogram', 'infogr_page');
+	//create new top-level menu
+	add_options_page('Infogram v1.1', 'Infogram settings', 'level_0', 'infogram', 'infogr_page');
 	//call register settings function
 	add_action( 'admin_init', 'register_infogr_settings' );
 }

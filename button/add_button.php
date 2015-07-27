@@ -33,7 +33,7 @@ function infogr_check_dashboard() {
 function infogr_media_popup_content() {
 	global $status;
 	// Check if the wp_editor() function has been called.
-	if ( ! did_action( 'before_wp_tiny_mce' ) or $status) {
+	if (!did_action('before_wp_tiny_mce') or $status) {
 		return;
 	}
 	?>
@@ -101,10 +101,10 @@ function infogr_message_popup() {
 			<h1><?php echo _e('Embed interactive</br>charts and infographics','Infogram')?></h1>
 			<span><?php echo _e('Infogram lets you quickly and easily create interactive and responsive data visualizations.','Infogram')?> <a href="https://about.infogr.am/" target="_blank"><?php echo _e('Read more','Infogram')?></a></span>
 			<div class="infogr-slides">
-				<img src="<?php echo  plugins_url('/img/slide1.gif', __FILE__); ?>" alt="slide" />
-				<img src="<?php echo  plugins_url('/img/slide2.gif', __FILE__); ?>" alt="slide" />
-				<img src="<?php echo  plugins_url('/img/slide3.gif', __FILE__); ?>" alt="slide" />
-				<img src="<?php echo  plugins_url('/img/slide4.gif', __FILE__); ?>" alt="slide" />
+				<img src="<?php echo plugins_url('/img/slide1.gif', __FILE__); ?>" alt="slide" />
+				<img src="<?php echo plugins_url('/img/slide2.gif', __FILE__); ?>" alt="slide" />
+				<img src="<?php echo plugins_url('/img/slide3.gif', __FILE__); ?>" alt="slide" />
+				<img src="<?php echo plugins_url('/img/slide4.gif', __FILE__); ?>" alt="slide" />
 			</div>
 		</div>
 		<div class="infogr-set-area">
@@ -124,14 +124,18 @@ function infogr_message_popup() {
 }
 
 // out infographic
-function infogr_add_infographics( $atts ) {
+function infogr_add_infographics($atts) {
 	$atts = shortcode_atts( array(
 		'id' => '',
-		'prefix' => ''
+		'prefix' => '',
+		'format' => ''
 	), $atts, 'id' );
 
-	if($atts['id']) { 
-		return '<script id="infogram_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" type="text/javascript"></script>';
+	if($atts['id']) {
+		if($atts['format'] && $atts['format'] == 'image') {
+			return '<script id="infogramimg_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
+		} else 
+			return '<script id="infogram_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
 	} else {
 		return 'This code is broken or not exists!';
 	}

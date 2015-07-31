@@ -4,7 +4,7 @@
 /* -- message popup */
 /* -- media screen */
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,500);
 
 /* -- button */
 #call_infogr_popup {
@@ -48,7 +48,7 @@
 
 #infogr_media_popup .infogr_inner {
 	width: 930px;
-	margin: 100px auto 0;
+	margin: 0 auto;
 	background: #434343;
 	position: relative;
 	/*vertical-aligning to middle*/
@@ -383,11 +383,6 @@
 }
 
 /* -- media screen */
-@media all and (max-width: 1400px) {
-	#infogr_media_popup .infogr_inner {
-		margin-top: 20px;
-	}
-}
 @media all and (max-width: 960px) {
 	#call_infogr_popup {
 		height: 39px;

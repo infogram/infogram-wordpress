@@ -134,8 +134,9 @@ function infogr_add_infographics($atts) {
 	if($atts['id']) {
 		if($atts['format'] && $atts['format'] == 'image') {
 			return '<script id="infogramimg_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
-		} else 
+		} else {
 			return '<script id="infogram_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
+		}
 	} else {
 		return 'This code is broken or not exists!';
 	}

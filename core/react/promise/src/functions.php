@@ -72,8 +72,8 @@ function some($promisesOrValues, $howMany)
                 $len       = count($array);
                 $toResolve = min($howMany, $len);
                 $toReject  = ($len - $toResolve) + 1;
-                $values    = [];
-                $reasons   = [];
+                $values    = array();
+                $reasons   = array();
 
                 foreach ($array as $i => $promiseOrValue) {
                     $fulfiller = function ($val) use ($i, &$values, &$toResolve, $toReject, $resolve) {
@@ -117,7 +117,7 @@ function map($promisesOrValues, callable $mapFunc)
 
             return new Promise(function ($resolve, $reject, $notify) use ($array, $mapFunc) {
                 $toResolve = count($array);
-                $values    = [];
+                $values    = array();
 
                 foreach ($array as $i => $promiseOrValue) {
                     resolve($promiseOrValue)
@@ -143,7 +143,7 @@ function reduce($promisesOrValues, callable $reduceFunc , $initialValue = null)
     return resolve($promisesOrValues)
         ->then(function ($array) use ($reduceFunc, $initialValue) {
             if (!is_array($array)) {
-                $array = [];
+                $array = array();
             }
 
             $total = count($array);

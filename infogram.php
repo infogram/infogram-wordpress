@@ -1,9 +1,9 @@
 <?php
 /*
-	Plugin Name: Infogram
-	Plugin URI: https://infogr.am
-	Description: It allows you to insert graphics from the site www.infogr.am
-	Version: 1.2.2
+	Plugin Name: Infogr.am
+	Plugin URI: https://blog.infogr.am/new-infogram-wordpress-plugin/
+	Description: It allows you to insert graphics from the site infogr.am
+	Version: 1.2.4
 	Tags: infogram, shortcode, iframe, insert, rest api, json 
 */
 
@@ -12,7 +12,7 @@ add_action('admin_menu', 'infogr_add_pages');
 
 function infogr_add_pages() {
 	//create new top-level menu
-	add_options_page('Infogram v1.2.2', 'Infogram settings', 'level_0', 'infogram', 'infogr_page');
+	add_options_page('Infogr.am v1.2.4', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
 	//call register settings function
 	add_action('admin_init', 'register_infogr_settings');
 }
@@ -28,7 +28,7 @@ function infogr_page() {
 	global $inforgam;
 ?>
 	<div class="wrap">
-	<h2>Infogram</h2>
+		<h2>Infogram</h2>
 		<?php $inforgam->plugin_status(); ?>
 		<form method="post" action="options.php">
 			<?php settings_fields('my-infogr-settings'); ?>
@@ -50,7 +50,7 @@ function infogr_page() {
 			<?php submit_button(); ?>
 		</form>
 	</div>
-<?php	
+<?php
 }
 
 function infogr_create_object() {
@@ -81,7 +81,7 @@ function infogr_handle_activation() {}
 function infogr_handle_deactivation() {}
 
 // Activation hooks for some basic initialization
-register_activation_hook(__FILE__,  'infogr_handle_activation');
+register_activation_hook(__FILE__, 'infogr_handle_activation');
 register_deactivation_hook(__FILE__, 'infogr_handle_deactivation');
 
 // Main Infogram activation hook

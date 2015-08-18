@@ -17,7 +17,7 @@ function infogr_media_button( $editor_id ) {
 	
 	printf('<span id="%s">%s</span>',
 		'call_infogr_popup',
-		'Add From Infogram'
+		'Add From Infogr.am'
 	);
 }
 
@@ -48,9 +48,9 @@ function infogr_media_popup_content() {
 			?>
 			<div class="infogr-popup-footer">
 				<!-- add embed form -->
-				<a href="https://infogram.zendesk.com/hc/en-us/sections/200446823-FAQ" target="_blank" class="infogr_faq"><?php echo _e('Need help with plugin?','Infogram')?></a>
+				<a href="https://infogram.zendesk.com/hc/en-us/sections/200446823-FAQ" target="_blank" class="infogr_faq"><?php echo _e('Need help with plugin?', 'Infogr.am')?></a>
 				<form action="" method="POST" id="infogr_embed">
-					<input type="text" id="infogr_add_embed" placeholder="<?php echo _e('Embed from a link. Paste the Infogr.am URL to the chart or infographic here.','Infogram')?>"/>
+					<input type="text" id="infogr_add_embed" placeholder="<?php echo _e('Embed from a link. Paste the Infogr.am URL to the chart or infographic here.', 'Infogr.am')?>"/>
 					<input type="submit" value="Embed"/>
 				</form>
 			</div>
@@ -64,7 +64,7 @@ function infogr_add_media_popup() {
 	
 	$infographics = $inforgam->get_all_inforgams(); ?>
 	<div class="infogr-active-top">
-		<span><?php echo _e('Click on a chart or infographic</br>to embed','Infogram')?></span>
+		<span><?php echo _e('Click on a chart or infographic</br>to embed', 'Infogr.am')?></span>
 		<a href="https://infogr.am/" target="_blank" title="logo"><img src="<?php echo  plugins_url('/img/logow.png', __FILE__); ?>" alt="logo" /></a>
 	</div>
 	<?php
@@ -98,8 +98,8 @@ function infogr_message_popup() {
 	?>
 	<div class="infogr-no-active">
 		<div class="infogr-info-area">
-			<h1><?php echo _e('Embed interactive</br>charts and infographics','Infogram')?></h1>
-			<span><?php echo _e('Infogram lets you quickly and easily create interactive and responsive data visualizations.','Infogram')?> <a href="https://about.infogr.am/" target="_blank"><?php echo _e('Read more','Infogram')?></a></span>
+			<h1><?php echo _e('Embed interactive</br>charts and infographics', 'Infogr.am')?></h1>
+			<span><?php echo _e('Infogr.am lets you quickly and easily create interactive and responsive data visualizations.', 'Infogr.am')?> <a href="https://about.infogr.am/" target="_blank"><?php echo _e('Read more', 'Infogr.am')?></a></span>
 			<div class="infogr-slides">
 				<img src="<?php echo plugins_url('/img/slide1.gif', __FILE__); ?>" alt="slide" />
 				<img src="<?php echo plugins_url('/img/slide2.gif', __FILE__); ?>" alt="slide" />
@@ -108,14 +108,13 @@ function infogr_message_popup() {
 			</div>
 		</div>
 		<div class="infogr-set-area">
-			<a href="https://infogr.am/" target="_blank" title="logo"><img src="<?php echo  plugins_url('/img/logo.png', __FILE__); ?>" alt="logo" /></a>
+			<a href="https://infogr.am/" target="_blank" title="logo"><img src="<?php echo plugins_url('/img/logo.png', __FILE__); ?>" alt="logo" /></a>
 			<div class="infogr-set-action">
-				<span><?php echo _e('Not yet an infogram user?','Infogram')?></span>
-				<span><?php echo _e('Get a 30-day free trial!','Infogram')?></span>
-				<a class="create_inf" target="_blank" title="create" href="https://infogr.am/pricing?utm_source=wp-plugin&utm_medium=wp&utm_campaign=wp"><?php echo _e('Create new account','Infogram')?></a>
+				<span><?php echo _e('Not yet an Infogr.am user?', 'Infogr.am')?></span>
+				<a class="create_inf" target="_blank" title="create" href="https://infogr.am/?utm_source=wp-plugin&utm_medium=wp&utm_campaign=wp"><?php echo _e('Create new account','Infogr.am')?></a>
 			</div>
 			<div class="infogr-set-settings">
-				<span><?php echo _e('Already have an Infogram account?')?></h5>
+				<span><?php echo _e('Already have an Infogr.am account?')?></h5>
 				<a class="setting_inf" target="_blank" title="setting" href="<?php bloginfo('url') ?>/wp-admin/options-general.php?page=infogram">Authenticate here</a>
 			</div>
 		</div>

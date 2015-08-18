@@ -48,7 +48,7 @@ function infogr_media_popup_content() {
 			?>
 			<div class="infogr-popup-footer">
 				<!-- add embed form -->
-				<a href="https://infogram.zendesk.com/hc/en-us/sections/200446823-FAQ" target="_blank" class="infogr_faq"><?php echo _e('Need help with plugin?', 'Infogr.am')?></a>
+				<a href="https://blog.infogr.am/new-infogram-wordpress-plugin/" target="_blank" class="infogr_faq"><?php echo _e('Need help with plugin?', 'Infogr.am')?></a>
 				<form action="" method="POST" id="infogr_embed">
 					<input type="text" id="infogr_add_embed" placeholder="<?php echo _e('Embed from a link. Paste the Infogr.am URL to the chart or infographic here.', 'Infogr.am')?>"/>
 					<input type="submit" value="Embed"/>

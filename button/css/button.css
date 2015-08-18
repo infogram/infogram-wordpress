@@ -7,7 +7,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,500);
 
 /* -- button */
-#call_infogr_popup {
+.infogr_btn_new {
 	background: url(../img/fav.jpg) no-repeat 7px center #f7f7f7;
 	border-color: #ccc;
 	box-shadow: 0 1px 0 #fff inset, 0 1px 0 rgba(0, 0, 0, 0.08);
@@ -27,7 +27,13 @@
 	white-space: nowrap;
 }
 
-#call_infogr_popup:hover {
+.infogr_btn_old {
+	cursor: pointer;
+	vertical-align: bottom;
+	margin-left: 10px;
+}
+
+.infogr_btn:hover {
 	background-color: #fafafa;
 	border-color: #999;
 	color: #222;
@@ -384,7 +390,7 @@
 
 /* -- media screen */
 @media all and (max-width: 960px) {
-	#call_infogr_popup {
+	.infogr_btn {
 		height: 39px;
 		line-height: 38px;
 	}

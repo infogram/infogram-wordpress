@@ -5,7 +5,7 @@ add_action('media_buttons', 'infogr_media_button', 11);
 /* Loads media button popup content in the footer. */
 add_action('admin_print_footer_scripts', 'infogr_media_popup_content', 100);
 
-function infogr_media_button( $editor_id ) {
+function infogr_media_button($editor_id) {
 	global $inforgam;
 	
 	wp_enqueue_script('infogr-popup-config', plugins_url('js/popup.js', __FILE__), array(), '20152306', true);
@@ -15,10 +15,13 @@ function infogr_media_button( $editor_id ) {
 		wp_enqueue_script('infogr-scroll-js', plugins_url('js/jquery.nicescroll.min.js', __FILE__), array(), '20152306', true);
 	}
 	
-	printf('<span id="%s">%s</span>',
-		'call_infogr_popup',
-		'Add From Infogr.am'
-	);
+	if ($wp_version > 3.8) {
+		$button_class = 'infogr_btn_new';
+	} else {
+		$button_class = 'infogr_btn_old';
+	}
+
+	printf('<span class="%s" id="%s">%s</span>', $button_class, 'call_infogr_popup', 'Add From Infogr.am');
 }
 
 /* Check for dashboard page */
@@ -36,8 +39,7 @@ function infogr_media_popup_content() {
 	if (!did_action('before_wp_tiny_mce') or $status) {
 		return;
 	}
-	?>
-	
+?>	
 	<div id="infogr_media_popup">
 		<div class="infogr_inner">
 			<span id="close_infogr_popup"></span>
@@ -56,7 +58,7 @@ function infogr_media_popup_content() {
 			</div>
 		</div>
 	</div>
-	<?php
+<?php
 }
 
 function infogr_add_media_popup() {
@@ -124,11 +126,11 @@ function infogr_message_popup() {
 
 // out infographic
 function infogr_add_infographics($atts) {
-	$atts = shortcode_atts( array(
+	$atts = shortcode_atts(array(
 		'id' => '',
 		'prefix' => '',
 		'format' => ''
-	), $atts, 'id' );
+	), $atts, 'id');
 
 	if($atts['id']) {
 		if($atts['format'] && $atts['format'] == 'image') {

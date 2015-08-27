@@ -7,6 +7,7 @@ add_action('admin_print_footer_scripts', 'infogr_media_popup_content', 100);
 
 function infogr_media_button($editor_id) {
 	global $inforgam;
+	global $wp_version;
 	
 	wp_enqueue_script('infogr-popup-config', plugins_url('js/popup.js', __FILE__), array(), '20152306', true);
 	wp_enqueue_style('infogr-popup-style', plugins_url('css/button.css', __FILE__));
@@ -39,7 +40,7 @@ function infogr_media_popup_content() {
 	if (!did_action('before_wp_tiny_mce') or $status) {
 		return;
 	}
-?>	
+?>
 	<div id="infogr_media_popup">
 		<div class="infogr_inner">
 			<span id="close_infogr_popup"></span>

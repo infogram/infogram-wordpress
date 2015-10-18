@@ -124,24 +124,3 @@ function infogr_message_popup() {
 	</div>
 	<?php
 }
-
-// out infographic
-function infogr_add_infographics($atts) {
-	$atts = shortcode_atts(array(
-		'id' => '',
-		'prefix' => '',
-		'format' => ''
-	), $atts, 'id');
-
-	if($atts['id']) {
-		if($atts['format'] && $atts['format'] == 'image') {
-			return '<script id="infogramimg_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
-		} else {
-			return '<script id="infogram_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
-		}
-	} else {
-		return 'This code is broken or not exists!';
-	}
-}
-
-add_shortcode('infogram', 'infogr_add_infographics');

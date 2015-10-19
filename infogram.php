@@ -3,7 +3,7 @@
 	Plugin Name: Infogr.am
 	Plugin URI: https://blog.infogr.am/new-infogram-wordpress-plugin/
 	Description: It allows you to insert graphics from the site infogr.am
-	Version: 1.2.6
+	Version: 1.2.7
 	Tags: infogram, shortcode, iframe, insert, rest api, json 
 */
 
@@ -12,7 +12,7 @@ add_action('admin_menu', 'infogr_add_pages');
 
 function infogr_add_pages() {
 	//create new top-level menu
-	add_options_page('Infogr.am v1.2.6', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
+	add_options_page('Infogr.am v1.2.7', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
 	//call register settings function
 	add_action('admin_init', 'register_infogr_settings');
 }
@@ -64,15 +64,36 @@ function infogr_create_object() {
 	global $inforgam;
 	
 	$options = array(
-				'api_key' => get_option('infogr_api_key'),
-				'api_secret' => get_option('infogr_api_secret'),
-				'username' => get_option('infogr_username')
-			);
+		'api_key' => get_option('infogr_api_key'),
+		'api_secret' => get_option('infogr_api_secret'),
+		'username' => get_option('infogr_username')
+	);
 
 	if ( !$inforgam ) {
 		$inforgam = new Infogram($options);
 	}
 }
+
+// out infographic
+function infogr_add_infographics($atts) {
+	$atts = shortcode_atts(array(
+		'id' => '',
+		'prefix' => '',
+		'format' => ''
+	), $atts, 'id');
+
+	if($atts['id']) {
+		if($atts['format'] && $atts['format'] == 'image') {
+			return '<script id="infogramimg_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
+		} else {
+			return '<script id="infogram_0_'.$atts['id'].'" src="//e.infogr.am/js/embed.js?'.$atts['prefix'].'" async></script>';
+		}
+	} else {
+		return 'This code is broken or not exists!';
+	}
+}
+
+add_shortcode('infogram', 'infogr_add_infographics');
 
 // Global Infogram activation hook
 function infogr_handle_activation() {}
@@ -85,4 +106,6 @@ register_activation_hook(__FILE__, 'infogr_handle_activation');
 register_deactivation_hook(__FILE__, 'infogr_handle_deactivation');
 
 // Main Infogram activation hook
-add_action( 'plugins_loaded', 'infogr_create_object' );
+if ( is_admin() ) {
+	add_action('plugins_loaded', 'infogr_create_object');
+};

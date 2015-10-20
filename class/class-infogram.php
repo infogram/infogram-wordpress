@@ -21,8 +21,9 @@ class Infogram
     $this->api_key = $init['api_key']; 
     $this->api_secret = $init['api_secret'];
     $this->username = $init['username'];
-    if($this->check_settings() === true)
+    if($this->check_settings() === true) {
       $this->valid = true;
+    }
   }
 
   function __destruct() {}
@@ -61,7 +62,7 @@ class Infogram
       array('error', 'Incorrect settings! Plugin is not active.', $this->check_settings()) :
       array('updated', 'Plugin is active.', '');
 
-    printf('<div id="setting-error-settings_updated" class="%s settings-error"><p><strong>%s</strong></br><strong>%s</strong></p></div>',$st[0],$st[1],$st[2]);
+    printf('<div id="setting-error-settings_updated" class="%s settings-error"><p><strong>%s</strong></br><strong>%s</strong></p></div>', $st[0], $st[1], $st[2]);
   }
 
   // get settings status
@@ -84,7 +85,7 @@ class Infogram
     if($this->is_ok($response) === true) {
       $infographics = $response->getBody();
       if (empty($infographics)) {
-        return sprintf('<div id="setting-error-settings_updated" class="error settings-error"><p><strong>%s</strong></p></div>','There are no public infographics for this user');
+        return sprintf('<div id="setting-error-settings_updated" class="error settings-error"><p><strong>%s</strong></p></div>', 'There are no public infographics for this user');
       } else {
         return $infographics;
       }

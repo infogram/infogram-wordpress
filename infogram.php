@@ -3,7 +3,7 @@
   Plugin Name: Infogr.am
   Plugin URI: https://blog.infogr.am/new-infogram-wordpress-plugin/
   Description: It allows you to insert graphics from the site infogr.am
-  Version: 1.2.10
+  Version: 1.2.11
   Tags: infogram, shortcode, iframe, insert, rest api, json
 */
 
@@ -12,7 +12,8 @@ add_action('admin_menu', 'infogr_add_pages');
 
 function infogr_add_pages() {
   //create new top-level menu
-  add_options_page('Infogr.am v1.2.10', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
+  add_options_page('Infogr.am v1.2.11', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
+
   //call register settings function
   add_action('admin_init', 'register_infogr_settings');
 }
@@ -84,9 +85,9 @@ function infogr_add_infographics($atts) {
 
   if($atts['id']) {
     if($atts['format'] && $atts['format'] == 'image') {
-      return '<script>!function(e,t,n,i,r){var d="script",o="InfogramEmbeds",a=e.getElementsByTagName(d),s=a[0];if(/^\/{2}/.test(n)&&0===t.location.protocol.indexOf("file")&&(n="http:"+n),!t[o]){t[o]={add:function(e,n,i){t[o].list.push({id:e,container:n,type:i})},script:n,list:[]};var c=e.createElement(d);c.async=1,c.src=n,s.parentNode.insertBefore(c,s)}var l=a[a.length-1],m=e.createElement("div");l.parentNode.insertBefore(m,l),t[o].add(i,m,r)}(document,window,"//e.infogr.am/js/dist/embed-loader-min.js","'.$atts['id'].'","image");</script>';
+      return '<script>!function(e,t,i,n,r,d){function o(e,i,n,r){t[s].list.push({id:e,title:r,container:i,type:n})}var a="script",s="InfogramEmbeds",c=e.getElementsByTagName(a),l=c[0];if(/^\/{2}/.test(i)&&0===t.location.protocol.indexOf("file")&&(i="http:"+i),!t[s]){t[s]={script:i,list:[]};var m=e.createElement(a);m.async=1,m.src=i,l.parentNode.insertBefore(m,l)}t[s].add=o;var p=c[c.length-1],f=e.createElement("div");p.parentNode.insertBefore(f,p),t[s].add(n,f,r,d)}(document,window,"//e.infogr.am/js/dist/embed-loader-min.js","'.$atts['id'].'","image","");</script>';
     } else {
-      return '<script>!function(e,t,n,i,r){var d="script",o="InfogramEmbeds",a=e.getElementsByTagName(d),s=a[0];if(/^\/{2}/.test(n)&&0===t.location.protocol.indexOf("file")&&(n="http:"+n),!t[o]){t[o]={add:function(e,n,i){t[o].list.push({id:e,container:n,type:i})},script:n,list:[]};var c=e.createElement(d);c.async=1,c.src=n,s.parentNode.insertBefore(c,s)}var l=a[a.length-1],m=e.createElement("div");l.parentNode.insertBefore(m,l),t[o].add(i,m,r)}(document,window,"//e.infogr.am/js/dist/embed-loader-min.js","'.$atts['id'].'","interactive");</script>';
+      return '<script>!function(e,t,i,n,r,d){function o(e,i,n,r){t[s].list.push({id:e,title:r,container:i,type:n})}var a="script",s="InfogramEmbeds",c=e.getElementsByTagName(a),l=c[0];if(/^\/{2}/.test(i)&&0===t.location.protocol.indexOf("file")&&(i="http:"+i),!t[s]){t[s]={script:i,list:[]};var m=e.createElement(a);m.async=1,m.src=i,l.parentNode.insertBefore(m,l)}t[s].add=o;var p=c[c.length-1],f=e.createElement("div");p.parentNode.insertBefore(f,p),t[s].add(n,f,r,d)}(document,window,"//e.infogr.am/js/dist/embed-loader-min.js","'.$atts['id'].'","interactive","");</script>';
     }
   } else {
     return 'This code is broken or not exists!';

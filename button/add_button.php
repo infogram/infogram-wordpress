@@ -65,7 +65,7 @@ function infogr_media_popup_content() {
 function infogr_add_media_popup() {
   global $inforgam;
 
-  $infographics = $inforgam->get_all_inforgams(); ?>
+  $infographics = $inforgam->get_all_inforgaphics(); ?>
   <div class="infogr-active-top">
     <span><?php echo _e('Click on a chart or infographic</br>to embed', 'Infogr.am'); ?></span>
     <a href="https://infogr.am/" target="_blank" title="logo"><img src="<?php echo plugins_url('/img/logow.png', __FILE__); ?>" alt="logo" /></a>
@@ -97,7 +97,7 @@ function infogr_add_media_popup() {
   echo '<div class="container_infographic">'.$out.'</div>';
 }
 
-function infogr_message_popup() { 
+function infogr_message_popup() {
   ?>
   <div class="infogr-no-active">
     <div class="infogr-info-area">

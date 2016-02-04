@@ -40,11 +40,11 @@ class Infogram
   // check answer from server
   function is_ok($response) {
     if(!$response) {
-      return 'ERROR: Cannot connect to the server';
+      return __('ERROR: Cannot connect to the server', 'infogram');
     }
 
     if(!$response->isOK()) {
-      return 'ERROR: Could not execute request';
+      return __('ERROR: Could not execute request', 'infogram');
     }
 
     return true;
@@ -68,11 +68,11 @@ class Infogram
   // get error message
   function plugin_status() {
     if ($this->is_form_filled() !== true) {
-      printf('<div id="setting-error-settings_updated" class="notice notice-warning inline below-h2"><p>Warning: Plugin is not active.</p><p><strong>Please fill out the form below.</strong></p></div>');
+      printf('<div id="setting-error-settings_updated" class="notice notice-warning inline below-h2"><p>%s</p><p><strong></strong></p></div>', __('Warning: Plugin is not active.', 'infogram'), __('Please fill out the form below.', 'infogram'));
     } else {
       $st = ($this->check_settings() !== true) ?
-        array('error', 'Incorrect settings! Plugin is not active.', $this->check_settings()) :
-        array('updated', 'Plugin is active.', '');
+        array('error', __('Incorrect settings! Plugin is not active.', 'infogram'), $this->check_settings()) :
+        array('updated', __('Plugin is active.', 'infogram'), '');
 
       printf('<div id="setting-error-settings_updated" class="%s settings-error"><p><strong>%s</strong></br><strong>%s</strong></p></div>', $st[0], $st[1], $st[2]);
     }
@@ -98,7 +98,7 @@ class Infogram
     if($this->is_ok($response) === true) {
       $infographics = $response->getBody();
       if (empty($infographics)) {
-        return sprintf('<div id="setting-error-settings_updated" class="error settings-error"><p><strong>%s</strong></p></div>', 'There are no public infographics for this user');
+        return sprintf('<div id="setting-error-settings_updated" class="error settings-error"><p><strong>%s</strong></p></div>', __('There are no public infographics for this user', 'infogram'));
       } else {
         return $infographics;
       }

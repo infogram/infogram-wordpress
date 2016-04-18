@@ -41,7 +41,7 @@ function infogr_media_popup_content() {
     return;
   }
 ?>
-  <div id="infogr_media_popup">
+  <div id="infogr_media_popup" style="display: none;">
     <div class="infogr_inner">
       <span id="close_infogr_popup"></span>
       <?php

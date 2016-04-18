@@ -3,8 +3,7 @@
 use Infogram\InfogramRequest;
 use Infogram\RequestSigningSession;
 
-class Infogram
-{
+class Infogram {
   // Api key
   private $api_key;
 

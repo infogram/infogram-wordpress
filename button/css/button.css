@@ -41,6 +41,7 @@
 
 /* -- popup basic styles */
 #infogr_media_popup {
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -86,6 +87,19 @@
 
 #infogr_media_popup #close_infogr_popup:hover {
 	background-position: 0 0;
+}
+
+.infogr_popup_content {
+  overflow: hidden;
+  outline: none;
+  height: 500px;
+  /*padding: 90px 1% 0;
+  width: 98%;*/
+}
+
+.infogr_popup_content.loader {
+	background: url(../img/loader.gif) no-repeat;
+  background-position: 50% 50%;
 }
 
 .infogr-popup-footer {
@@ -181,9 +195,6 @@
 
 /* -- active popup */
 .infogr-active-top {
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 96%;
 	z-index: 1;
 	background: url(../img/top-back.png);
@@ -207,9 +218,7 @@
 }
 
 .container_infographic {
-	max-height: 500px;
-	padding: 90px 1% 0;
-		width: 98%;
+	max-height: 420px;
 }
 
 .infographic {
@@ -282,7 +291,7 @@
 	padding: 70px 40px 100px; 
 	display: table-cell;
 	background: #8ec3a7;
-	width: 480px;
+	width: 520px;
 	vertical-align: top;
 }
 

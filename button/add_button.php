@@ -6,13 +6,13 @@ add_action('media_buttons', 'infogr_media_button', 11);
 add_action('admin_print_footer_scripts', 'infogr_media_popup_content', 100);
 
 function infogr_media_button($editor_id) {
-  global $inforgam;
+  global $infogram;
   global $wp_version;
 
   wp_enqueue_script('infogr-popup-config', plugins_url('js/popup.js', __FILE__), array(), '20152306', true);
   wp_enqueue_style('infogr-popup-style', plugins_url('css/button.css', __FILE__));
 
-  if($inforgam->is_valid()) {
+  if($infogram->is_valid()) {
     wp_enqueue_script('infogr-scroll-js', plugins_url('js/jquery.nicescroll.min.js', __FILE__), array(), '20152306', true);
   }
 
@@ -41,14 +41,11 @@ function infogr_media_popup_content() {
     return;
   }
 ?>
-  <div id="infogr_media_popup" style="display: none;">
+  <div id="infogr_media_popup">
     <div class="infogr_inner">
       <span id="close_infogr_popup"></span>
-      <?php
-        // Check if the plugins setting is wrong
-        global $inforgam;
-        ($inforgam->is_valid()) ? infogr_add_media_popup() : infogr_message_popup();
-      ?>
+      <div class="infogr_popup_content loader">      
+      </div>
       <div class="infogr-popup-footer">
         <!-- add embed form -->
         <a href="https://blog.infogr.am/new-infogram-wordpress-plugin/" target="_blank" class="infogr_faq"><?php _e('Need help with plugin?', 'infogram')?></a>
@@ -63,9 +60,9 @@ function infogr_media_popup_content() {
 }
 
 function infogr_add_media_popup() {
-  global $inforgam;
+  global $infogram;
 
-  $infographics = $inforgam->get_all_inforgaphics(); ?>
+  $infographics = $infogram->get_all_inforgaphics(); ?>
   <div class="infogr-active-top">
     <span><?php _e('Click on a chart or infographic</br>to embed', 'infogram'); ?></span>
     <a href="https://infogr.am/" target="_blank" title="logo"><img src="<?php echo plugins_url('/img/logow.png', __FILE__); ?>" alt="logo" /></a>

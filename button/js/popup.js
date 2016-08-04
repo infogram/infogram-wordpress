@@ -12,7 +12,6 @@ jQuery(function($){
     jQuery.post(ajaxurl, data, function(response) {
       $('.infogr_popup_content').removeClass('loader');
       $('.infogr_popup_content').html(response);
-      nicescroll_init();
     });
   });
 
@@ -115,16 +114,4 @@ jQuery(function($){
     var code = $(this).attr('data-code');
     infogr_generate_shortcode(embed, code);
   });
-
-  // Nice scroll
-  function nicescroll_init() {
-    if($('.container_infographic').length){
-      $('.container_infographic').niceScroll({
-        cursorborder: '',
-        cursorcolor: '#656565'
-      });
-    }
-  }
-
-  nicescroll_init();
 });

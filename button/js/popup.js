@@ -1,7 +1,18 @@
 jQuery(function($){
   // call popup
   $('body').on('click', 'span.infogr_btn_new', function(){
-     $('#infogr_media_popup').fadeIn(200);
+    $('#infogr_media_popup').fadeIn(200);
+    $('.infogr_popup_content').html('');
+    $('.infogr_popup_content').addClass('loader');
+     
+    var data = {
+      'action': 'infogram_dialog'
+    };
+
+    jQuery.post(ajaxurl, data, function(response) {
+      $('.infogr_popup_content').removeClass('loader');
+      $('.infogr_popup_content').html(response);
+    });
   });
 
   // close popup
@@ -103,12 +114,4 @@ jQuery(function($){
     var code = $(this).attr('data-code');
     infogr_generate_shortcode(embed, code);
   });
-
-  // Nice scroll
-  if($('.container_infographic').length){
-    $('.container_infographic').niceScroll({
-      cursorborder: '',
-      cursorcolor: '#656565'
-    });
-  }
 });

@@ -3,17 +3,25 @@
   Plugin Name: Infogr.am
   Plugin URI: https://blog.infogr.am/new-infogram-wordpress-plugin/
   Description: It allows you to insert graphics from the site infogr.am
-  Version: 1.3.1
+  Version: 1.4.0
   Text Domain: infogram
   Tags: infogram, shortcode, iframe, insert, rest api, json
 */
 
 // Add setings page and register settings
 add_action('admin_menu', 'infogr_add_pages');
+add_action('wp_ajax_infogram_dialog', 'prefix_ajax_infogram_dialog');
+
+function prefix_ajax_infogram_dialog() {
+  global $infogram;
+  ($infogram->check_is_valid()) ? infogr_add_media_popup() : infogr_message_popup();
+
+  wp_die();
+}
 
 function infogr_add_pages() {
   //create new top-level menu
-  add_options_page('Infogr.am v1.3.1', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
+  add_options_page('Infogr.am v1.4.0', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
 
   //call register settings function
   add_action('admin_init', 'register_infogr_settings');
@@ -27,11 +35,11 @@ function register_infogr_settings() {
 }
 
 function infogr_page() {
-  global $inforgam;
+  global $infogram;
 ?>
   <div class="wrap">
     <h2>Infogram</h2>
-    <?php $inforgam->plugin_status(); ?>
+    <?php $infogram->plugin_status(); ?>
     <form method="post" action="options.php">
       <?php settings_fields('my-infogr-settings'); ?>
       <?php do_settings_sections('my-infogr-settings'); ?>
@@ -63,7 +71,7 @@ function infogr_create_object() {
   // Load media button function
   require_once('button/add_button.php');
 
-  global $inforgam;
+  global $infogram;
 
   $options = array(
     'api_key' => get_option('infogr_api_key'),
@@ -71,8 +79,8 @@ function infogr_create_object() {
     'username' => get_option('infogr_username')
   );
 
-  if ( !$inforgam ) {
-    $inforgam = new Infogram($options);
+  if ( !$infogram ) {
+    $infogram = new Infogram($options);
   }
 }
 

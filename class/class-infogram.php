@@ -3,7 +3,8 @@
 use Infogram\InfogramRequest;
 use Infogram\RequestSigningSession;
 
-class Infogram {
+class Infogram
+{
   // Api key
   private $api_key;
 
@@ -20,9 +21,9 @@ class Infogram {
     $this->api_key = $init['api_key'];
     $this->api_secret = $init['api_secret'];
     $this->username = $init['username'];
-    if($this->check_settings() === true) {
+    // if($this->check_settings() === true) {
       $this->valid = true;
-    }
+    // }
   }
 
   function __destruct() {}
@@ -77,13 +78,20 @@ class Infogram {
     }
   }
 
+  function check_is_valid() {
+    if($this->check_settings() !== true) {
+      $this->valid = false;
+    }
+    return $this->valid;
+  }
+
   // get settings status
   function is_valid() {
     return $this->valid;
   }
 
   // send request to server
-  function send_request($method,$param) {
+  function send_request($method, $param) {
     $session = new RequestSigningSession($this->api_key, $this->api_secret);
     $request = new InfogramRequest($session, $method, $param);
     $response = $request->execute();

@@ -66,7 +66,7 @@
 }
 
 #infogr_media_popup .infogr_inner::after {
-  content: "";
+  content: '';
   clear: both;
   display: block;
 }
@@ -93,8 +93,6 @@
   overflow: hidden;
   outline: none;
   height: 500px;
-  /*padding: 90px 1% 0;
-  width: 98%;*/
 }
 
 .infogr_popup_content.loader {
@@ -163,7 +161,7 @@
   cursor: pointer;
   padding: 7px 35px;
   border: 0;
-  font-family: "Roboto",sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 13px;
   transition: all 0.4s ease 0s;

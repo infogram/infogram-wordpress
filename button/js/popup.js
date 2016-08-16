@@ -2,16 +2,14 @@ jQuery(function($){
   // call popup
   $('body').on('click', 'span.infogr_btn_new', function(){
     $('#infogr_media_popup').fadeIn(200);
-    $('.infogr_popup_content').html('');
-    $('.infogr_popup_content').addClass('loader');
+    $('.infogr_popup_content').html('').addClass('loader');
      
     var data = {
       'action': 'infogram_dialog'
     };
 
     jQuery.post(ajaxurl, data, function(response) {
-      $('.infogr_popup_content').removeClass('loader');
-      $('.infogr_popup_content').html(response);
+      $('.infogr_popup_content').removeClass('loader').html(response);
     });
   });
 

@@ -10,7 +10,7 @@ function infogr_media_button($editor_id) {
   global $wp_version;
 
   wp_enqueue_script('infogr-popup-config', plugins_url('js/popup.js', __FILE__), array(), '20160804', true);
-  wp_enqueue_style('infogr-popup-style', plugins_url('css/button_v4.css', __FILE__));
+  wp_enqueue_style('infogr-popup-style', plugins_url('css/button.css', __FILE__), array(), 'v4');
 
   if ($wp_version > 3.8) {
     $button_class = 'infogr_btn_new';
@@ -65,6 +65,7 @@ function infogr_add_media_popup() {
   </div>
   <?php
   $count = 1;
+  $out = '';
 
   foreach ($infographics as $infographic) {
     $count--;

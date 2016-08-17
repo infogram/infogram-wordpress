@@ -3,7 +3,7 @@
   Plugin Name: Infogr.am
   Plugin URI: https://blog.infogr.am/new-infogram-wordpress-plugin/
   Description: It allows you to insert graphics from the site infogr.am
-  Version: 1.4.1
+  Version: 1.4.2
   Text Domain: infogram
   Tags: infogram, shortcode, iframe, insert, rest api, json
 */
@@ -21,7 +21,7 @@ function infogr_ajax_dialog() {
 
 function infogr_add_pages() {
   //create new top-level menu
-  add_options_page('Infogr.am v1.4.1', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
+  add_options_page('Infogr.am v1.4.2', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
 
   //call register settings function
   add_action('admin_init', 'register_infogr_settings');

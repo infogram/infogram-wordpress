@@ -73,6 +73,7 @@ function infogr_add_media_popup() {
     if($count == 0) $count = 5;
 
     $embed = str_replace("https://infogr.am/", "", $infographic->url);
+    $embed = str_replace("https://infogram.com/", "", $embed);
 
     $start_pos = strpos($infographic->embed_responsive, 'embed.js?')+9;
     $end_pos = strpos($infographic->embed_responsive, '" type');

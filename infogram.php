@@ -1,9 +1,9 @@
 <?php
 /*
-  Plugin Name: Infogr.am
-  Plugin URI: https://blog.infogr.am/new-infogram-wordpress-plugin/
-  Description: It allows you to insert graphics from the site infogr.am
-  Version: 1.4.4
+  Plugin Name: Infogram
+  Plugin URI: https://infogram.com/blog/new-infogram-wordpress-plugin/
+  Description: It allows you to insert graphics from the site infogram.com
+  Version: 1.7.0
   Text Domain: infogram
   Tags: infogram, shortcode, iframe, insert, rest api, json
 */
@@ -11,6 +11,50 @@
 // Add setings page and register settings
 add_action('admin_menu', 'infogr_add_pages');
 add_action('wp_ajax_infogram_dialog', 'infogr_ajax_dialog');
+add_action('wp_ajax_infogram_projects', 'get_all_inforgaphics');
+
+function create_block_infogram_block_init() {
+  // Block editor is not available.
+  if (!function_exists('register_block_type')) {
+    return;
+  }
+
+  global $infogram;
+
+  $config = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php' );
+  wp_register_script(
+    'infogram-block',
+    plugins_url('build/index.js', __FILE__),
+    $config['dependencies'],
+    $config['version']
+  );
+
+  register_block_type('infogram/infogram', [
+    'editor_script'   => 'infogram-block',
+    'attributes' => [
+      'bloginfo' => [
+        'default' => get_bloginfo('url'),
+        'type'    => 'string',
+      ],
+      'id' => [
+        'default' => '',
+        'type'    => 'string',
+      ],
+      'title' => [
+        'default' => '',
+        'type'    => 'string',
+      ],
+      'thumbnailUrl' => [
+        'default' => '',
+        'type'    => 'string',
+      ],
+      'configured' => [
+        'default' => $infogram->check_is_valid(),
+        'type'    => 'boolean',
+      ],
+    ],
+  ]);
+}
 
 function infogr_ajax_dialog() {
   global $infogram;
@@ -19,9 +63,15 @@ function infogr_ajax_dialog() {
   wp_die();
 }
 
+function get_all_inforgaphics() {
+  global $infogram;
+  wp_send_json($infogram->get_all_inforgaphics(true));
+  wp_die();
+}
+
 function infogr_add_pages() {
   //create new top-level menu
-  add_options_page('Infogr.am v1.4.4', 'Infogr.am settings', 'level_0', 'infogram', 'infogr_page');
+  add_options_page('Infogram.com v1.7.0', 'Infogram settings', 'manage_options', 'infogram', 'infogr_page');
 
   //call register settings function
   add_action('admin_init', 'register_infogr_settings');
@@ -31,7 +81,6 @@ function register_infogr_settings() {
   //register our settings
   register_setting('my-infogr-settings', 'infogr_api_key');
   register_setting('my-infogr-settings', 'infogr_api_secret');
-  register_setting('my-infogr-settings', 'infogr_username');
 }
 
 function infogr_page() {
@@ -46,15 +95,11 @@ function infogr_page() {
       <table class="form-table">
         <tr valign="top">
           <th scope="row"><?php _e('Your Api key:', 'infogram'); ?></th>
-          <td><input type="text" name="infogr_api_key" size="40" value="<?php echo esc_attr( get_option('infogr_api_key') ); ?>" /></td>
+          <td><input type="text" name="infogr_api_key" size="40" value="<?php echo esc_attr(get_option('infogr_api_key')); ?>" /></td>
         </tr>
         <tr valign="top">
           <th scope="row"><?php _e('Your Api secret:', 'infogram'); ?></th>
-          <td><input type="text" name="infogr_api_secret" size="40" value="<?php echo esc_attr( get_option('infogr_api_secret') ); ?>" /></td>
-        </tr>
-        <tr valign="top">
-          <th scope="row"><?php _e('User name:', 'infogram'); ?></th>
-          <td><input type="text" name="infogr_username" value="<?php echo esc_attr( get_option('infogr_username') ); ?>" /></td>
+          <td><input type="text" name="infogr_api_secret" size="40" value="<?php echo esc_attr(get_option('infogr_api_secret')); ?>" /></td>
         </tr>
       </table>
       <?php submit_button(); ?>
@@ -75,11 +120,10 @@ function infogr_create_object() {
 
   $options = array(
     'api_key' => get_option('infogr_api_key'),
-    'api_secret' => get_option('infogr_api_secret'),
-    'username' => get_option('infogr_username')
+    'api_secret' => get_option('infogr_api_secret')
   );
 
-  if ( !$infogram ) {
+  if (!$infogram) {
     $infogram = new Infogram($options);
   }
 }
@@ -89,17 +133,13 @@ function infogr_add_infographics($atts) {
   $atts = shortcode_atts(array(
     'id' => '',
     'prefix' => '',
-    'format' => ''
+    'format' => '',
+    'title' => ''
   ), $atts, 'id');
 
-  if($atts['id']) {
-    if($atts['format'] && $atts['format'] == 'image') {
-      return '<script>!function(e,t,i,n,r,d){function o(e,i,n,r){t[s].list.push({id:e,title:r,container:i,type:n})}var a="script",s="InfogramEmbeds",c=e.getElementsByTagName(a),l=c[0];if(/^\/{2}/.test(i)&&0===t.location.protocol.indexOf("file")&&(i="http:"+i),!t[s]){t[s]={script:i,list:[]};var m=e.createElement(a);m.async=1,m.src=i,l.parentNode.insertBefore(m,l)}t[s].add=o;var p=c[c.length-1],f=e.createElement("div");p.parentNode.insertBefore(f,p),t[s].add(n,f,r,d)}(document,window,"//e.infogr.am/js/dist/embed-loader-min.js","'.$atts['id'].'","image","");</script>';
-    } else {
-      return '<script>!function(e,t,i,n,r,d){function o(e,i,n,r){t[s].list.push({id:e,title:r,container:i,type:n})}var a="script",s="InfogramEmbeds",c=e.getElementsByTagName(a),l=c[0];if(/^\/{2}/.test(i)&&0===t.location.protocol.indexOf("file")&&(i="http:"+i),!t[s]){t[s]={script:i,list:[]};var m=e.createElement(a);m.async=1,m.src=i,l.parentNode.insertBefore(m,l)}t[s].add=o;var p=c[c.length-1],f=e.createElement("div");p.parentNode.insertBefore(f,p),t[s].add(n,f,r,d)}(document,window,"//e.infogr.am/js/dist/embed-loader-min.js","'.$atts['id'].'","interactive","");</script>';
-    }
-  } else {
-    return 'This code is broken or not exists!';
+  if ($atts['id']) {
+    $format = $atts['format'] && $atts['format'] == 'image' ? '' : 'interactive';
+    return '<div class="infogram-embed" data-id="' . $atts['id'] . '" data-type="' . $format . '" data-title="' . $atts['title'] . '"></div>';
   }
 }
 
@@ -116,6 +156,11 @@ register_activation_hook(__FILE__, 'infogr_handle_activation');
 register_deactivation_hook(__FILE__, 'infogr_handle_deactivation');
 
 // Main Infogram activation hook
-if ( is_admin() ) {
+if (is_admin()) {
   add_action('plugins_loaded', 'infogr_create_object');
+  add_action('init', 'create_block_infogram_block_init');
+} else {
+  wp_register_script('infogram-async-embed', '', [], '', true);
+  wp_enqueue_script('infogram-async-embed');
+  wp_add_inline_script('infogram-async-embed', '<script>!function(e,i,n,s){var t="InfogramEmbeds",d=e.getElementsByTagName("script")[0];if(window[t]&&window[t].initialized)window[t].process&&window[t].process();else if(!e.getElementById(n)){var o=e.createElement("script");o.async=1,o.id=n,o.src="https://e.infogram.com/js/dist/embed-loader-min.js",d.parentNode.insertBefore(o,d)}}(document,0,"infogram-async");</script>');
 };

@@ -8,7 +8,8 @@
 
 /* -- button */
 .infogr_btn_new {
-  background: url(../img/fav.jpg) no-repeat 7px center #f7f7f7;
+  background: url(../img/fav.png) no-repeat 7px center #f7f7f7;
+  background-size: 16px;
   border-color: #ccc;
   box-shadow: 0 1px 0 #fff inset, 0 1px 0 rgba(0, 0, 0, 0.08);
   color: #555;
@@ -103,13 +104,13 @@
 .infogr-popup-footer {
   background: #2c2b2b;
   width: 96%;
-  padding: 20px 2% 0; 
+  padding: 20px 2% 0;
 }
 
 .infogr-popup-footer:after {
   content: '';
   display: block;
-  clear: both;  
+  clear: both;
 }
 
 .infogr-popup-footer .infogr_faq {
@@ -228,7 +229,6 @@
   cursor: pointer;
   overflow: hidden;
   height: 160px;
-  border-radius; 5px;
 }
 
 .infographic img {
@@ -286,7 +286,7 @@
 }
 
 .infogr-info-area {
-  padding: 70px 40px 100px; 
+  padding: 70px 40px 100px;
   display: table-cell;
   background: #8ec3a7;
   width: 520px;
@@ -294,7 +294,7 @@
 }
 
 .infogr-set-area {
-  padding: 70px 40px 100px; 
+  padding: 70px 40px 100px;
   display: table-cell;
   background: #434343;
   width: 290px;
@@ -311,7 +311,7 @@
   color: #fff;
   font-weight: 300;
   line-height: 1.4;
-  margin: 0 0 10px 0; 
+  margin: 0 0 10px 0;
 }
 
 .infogr-info-area span {

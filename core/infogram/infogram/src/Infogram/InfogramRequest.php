@@ -8,7 +8,7 @@ namespace Infogram;
 class InfogramRequest extends SimpleRequest
 {
     const VERSION = '0.1.0';
-    const DEFAULT_BASE_URL = 'https://infogr.am/service/v1/';
+    const DEFAULT_BASE_URL = 'https://infogram.com/service/v1/';
 
     private $session;
 

@@ -129,14 +129,13 @@
         "authors": [
             {
                 "name": "Mārtiņš Barinskis",
-                "email": "mb@infogr.am",
+                "email": "hello@infogram.com",
                 "role": "Developer"
             }
         ],
-        "description": "PHP client for infogr.am REST API",
+        "description": "PHP client for Infogram REST API",
         "homepage": "https://github.com/infogram/infogram-php",
         "keywords": [
-            "infogr.am",
             "infogram"
         ]
     }

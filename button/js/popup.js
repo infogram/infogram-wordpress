@@ -1,9 +1,9 @@
-jQuery(function($){
+jQuery(function($) {
   // call popup
-  $('body').on('click', 'span.infogr_btn_new', function(){
+  $('body').on('click', 'span.infogr_btn_new', function() {
     $('#infogr_media_popup').fadeIn(200);
     $('.infogr_popup_content').html('').addClass('loader');
-     
+
     var data = {
       'action': 'infogram_dialog'
     };
@@ -14,20 +14,20 @@ jQuery(function($){
   });
 
   // close popup
-  $('#close_infogr_popup').click(function(){
+  $('#close_infogr_popup').click(function() {
     $('#infogr_media_popup').fadeOut(200);
     $('#infogr_add_embed').val('');
     err_remove();
   });
 
   // on click on text field remove error
-  $('#infogr_add_embed').on('input propertychange paste click', function(){
+  $('#infogr_add_embed').on('input propertychange paste click', function() {
     err_remove();
   });
 
   // input graphics with link
-  $('#infogr_embed').submit(function(){
-    var check = ['https://infogr.am/', 'https://e.infogr.am/', '?src=embed', '/'];
+  $('#infogr_embed').submit(function() {
+    var check = ['https://infogram.com/', 'https://e.infogram.com/', '?src=embed', '/'];
     var link = $('#infogr_add_embed').val();
 
     if (link.indexOf(check[0]) + 1) {
@@ -38,23 +38,20 @@ jQuery(function($){
       } else {
         err_remove();
       }
-    }
-    else if(link.indexOf(check[1]) + 1) {
-      if(link.indexOf(check[2]) + 1) {
+    } else if (link.indexOf(check[1]) + 1) {
+      if (link.indexOf(check[2]) + 1) {
         link = link.replace(check[1], '');
         link = link.replace(check[2], '');
       } else {
         link = link.replace(check[1], '');
       }
-      if(link.indexOf(check[3]) + 1) {
+      if (link.indexOf(check[3]) + 1) {
         inforg_error(true);
         return false;
-      }
-      else{
+      } else {
         err_remove();
       }
-    }
-    else {
+    } else {
       inforg_error(true);
       return false;
     }
@@ -70,12 +67,12 @@ jQuery(function($){
 
   // show error
   function inforg_error(show) {
-    if( show ) {
-      if(!$('span').is('.infogr_error')) {
-        $('#infogr_embed').append('<span class="infogr_error">Please use a valid infogr.am URL that contains an infographic.</span>').addClass('infogr_error');
+    if (show) {
+      if (!$('span').is('.infogr_error')) {
+        $('#infogr_embed').append('<span class="infogr_error">Please use a valid infogram.com URL that contains an infographic.</span>').addClass('infogr_error');
       }
     } else {
-      if($('span').is('.infogr_error')) {
+      if ($('span').is('.infogr_error')) {
         $('span.infogr_error').remove();
         $('#infogr_embed').removeClass('infogr_error');
       }
@@ -84,7 +81,7 @@ jQuery(function($){
 
   // remove error
   function err_remove() {
-    if($('span').is('.infogr_error')) {
+    if ($('span').is('.infogr_error')) {
       $('span.infogr_error').remove();
       $('#infogr_embed').removeClass('infogr_error');
     }
@@ -107,7 +104,7 @@ jQuery(function($){
   }
 
   // Generate the shortcode
-  $('body').on('click', '.infographic', function(){
+  $('body').on('click', '.infographic', function() {
     var embed = $(this).attr('data-embed');
     var code = $(this).attr('data-code');
     infogr_generate_shortcode(embed, code);

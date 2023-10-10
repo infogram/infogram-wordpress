@@ -198,7 +198,7 @@ class Requests_Transport_fsockopen implements Requests_Transport {
 				$out .= implode("\r\n", $headers) . "\r\n";
 			} else {
 				// For PHP versions older than 7.4, use the headers as is without a separator.
-				$out .= implode($headers, "\r\n") . "\r\n";
+				$out .= implode($headers, "\r\n") . "\r\n"; // phpcs:ignore PHPCompatibility.ParameterValues.RemovedImplodeFlexibleParamOrder.Removed
 			}
 		}
 

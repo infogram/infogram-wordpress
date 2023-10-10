@@ -192,7 +192,14 @@ class Requests_Transport_fsockopen implements Requests_Transport {
 		$headers = Requests::flatten($headers);
 
 		if (!empty($headers)) {
-			$out .= implode($headers, "\r\n") . "\r\n";
+			// Note: We handle PHP version differences in how 'implode' works.
+			if (version_compare(PHP_VERSION, '7.4.0', '>=')) {
+				// For PHP 7.4 and newer, use "\r\n" as the separator between headers.
+				$out .= implode("\r\n", $headers) . "\r\n";
+			} else {
+				// For PHP versions older than 7.4, use the headers as is without a separator.
+				$out .= implode($headers, "\r\n") . "\r\n";
+			}
 		}
 
 		$options['hooks']->dispatch('fsockopen.after_headers', array(&$out));
